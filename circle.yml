@@ -1,7 +1,7 @@
 dependencies:
-    override:
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.2,android-24,extra-android-m2repository
-        - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
+  override:
+    - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.2,android-24,extra-android-m2repository
+    - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
 
 machine:
   environment:
