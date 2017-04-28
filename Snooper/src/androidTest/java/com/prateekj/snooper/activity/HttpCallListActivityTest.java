@@ -2,7 +2,6 @@ package com.prateekj.snooper.activity;
 
 import android.app.Instrumentation;
 import android.content.Intent;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.prateekj.snooper.R;
@@ -10,6 +9,7 @@ import com.prateekj.snooper.model.HttpCall;
 import com.prateekj.snooper.realm.RealmFactory;
 import com.prateekj.snooper.repo.SnooperRepo;
 import com.prateekj.snooper.rules.RealmCleanRule;
+import com.prateekj.snooper.rules.SnooperActivityRule;
 import com.squareup.spoon.Spoon;
 
 import org.junit.Before;
@@ -44,8 +44,8 @@ public class HttpCallListActivityTest {
   public RealmCleanRule rule = new RealmCleanRule();
 
   @Rule
-  public IntentsTestRule<HttpCallListActivity> activityRule =
-    new IntentsTestRule<>(HttpCallListActivity.class, true, false);
+  public SnooperActivityRule<HttpCallListActivity> activityRule =
+    new SnooperActivityRule<>(HttpCallListActivity.class, true, false);
   private SnooperRepo snooperRepo;
 
   @Before

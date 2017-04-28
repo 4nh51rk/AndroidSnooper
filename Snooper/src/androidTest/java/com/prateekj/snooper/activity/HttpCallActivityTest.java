@@ -2,7 +2,6 @@ package com.prateekj.snooper.activity;
 
 import android.content.ClipboardManager;
 import android.content.Intent;
-import android.support.test.rule.ActivityTestRule;
 
 import com.google.common.collect.ImmutableMap;
 import com.prateekj.snooper.R;
@@ -10,6 +9,7 @@ import com.prateekj.snooper.model.HttpCall;
 import com.prateekj.snooper.repo.SnooperRepo;
 import com.prateekj.snooper.rules.RealmCleanRule;
 import com.prateekj.snooper.rules.RunUsingLooper;
+import com.prateekj.snooper.rules.SnooperActivityRule;
 import com.prateekj.snooper.viewmodel.HttpHeaderViewModel;
 import com.squareup.spoon.Spoon;
 
@@ -49,8 +49,8 @@ public class HttpCallActivityTest {
   public RunUsingLooper runUsingLooper = new RunUsingLooper();
 
   @Rule
-  public ActivityTestRule<HttpCallActivity> activityRule =
-    new ActivityTestRule<>(HttpCallActivity.class, true, false);
+  public SnooperActivityRule<HttpCallActivity> activityRule =
+    new SnooperActivityRule<>(HttpCallActivity.class, true, false);
   private SnooperRepo snooperRepo;
 
   @Before
