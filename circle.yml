@@ -18,3 +18,4 @@ test:
   override:
     - ./gradlew Snooper:clean Snooper:testDebugUnitTest Snooper:spoonDebugAndroidTest Snooper:lintDebug
     - cp -r Snooper/build/spoon/* $CIRCLE_TEST_REPORTS
+    - sh ./travis/circle-ci-push-artifact.sh
