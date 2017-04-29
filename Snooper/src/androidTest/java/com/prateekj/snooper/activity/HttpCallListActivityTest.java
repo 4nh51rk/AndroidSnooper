@@ -9,8 +9,8 @@ import com.prateekj.snooper.model.HttpCall;
 import com.prateekj.snooper.realm.RealmFactory;
 import com.prateekj.snooper.repo.SnooperRepo;
 import com.prateekj.snooper.rules.RealmCleanRule;
+import com.prateekj.snooper.rules.ScreenShotRule;
 import com.prateekj.snooper.rules.SnooperActivityRule;
-import com.squareup.spoon.Spoon;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -44,6 +44,9 @@ public class HttpCallListActivityTest {
   public RealmCleanRule rule = new RealmCleanRule();
 
   @Rule
+  public ScreenShotRule screenShotRule = new ScreenShotRule();
+
+  @Rule
   public SnooperActivityRule<HttpCallListActivity> activityRule =
     new SnooperActivityRule<>(HttpCallListActivity.class, true, false);
   private SnooperRepo snooperRepo;
@@ -61,7 +64,6 @@ public class HttpCallListActivityTest {
     saveHttpCall("https://www.facebook.com", "GET", 200, "OK", afterDate);
 
     activityRule.launchActivity(null);
-    Spoon.screenshot(activityRule.getActivity(), "shouldRenderHttpCalls");
 
     onView(withText(R.string.title_activity_http_call_list)).check(matches(isDisplayed()));
     onView(withText(R.string.done)).check(matches(isDisplayed()));

@@ -9,9 +9,9 @@ import com.prateekj.snooper.model.HttpCall;
 import com.prateekj.snooper.repo.SnooperRepo;
 import com.prateekj.snooper.rules.RealmCleanRule;
 import com.prateekj.snooper.rules.RunUsingLooper;
+import com.prateekj.snooper.rules.ScreenShotRule;
 import com.prateekj.snooper.rules.SnooperActivityRule;
 import com.prateekj.snooper.viewmodel.HttpHeaderViewModel;
-import com.squareup.spoon.Spoon;
 
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Matcher;
@@ -49,6 +49,9 @@ public class HttpCallActivityTest {
   public RunUsingLooper runUsingLooper = new RunUsingLooper();
 
   @Rule
+  public ScreenShotRule screenShotRule = new ScreenShotRule();
+
+  @Rule
   public SnooperActivityRule<HttpCallActivity> activityRule =
     new SnooperActivityRule<>(HttpCallActivity.class, true, false);
   private SnooperRepo snooperRepo;
@@ -68,7 +71,6 @@ public class HttpCallActivityTest {
     intent.putExtra(HTTP_CALL_ID, 1);
 
     activityRule.launchActivity(intent);
-    Spoon.screenshot(activityRule.getActivity(), "shouldRenderRequestAndResponseBody");
 
     onView(withText(R.string.title_http_call_activity)).check(matches(isDisplayed()));
     onView(allOf(withId(R.id.payload_text), isDisplayed()))
