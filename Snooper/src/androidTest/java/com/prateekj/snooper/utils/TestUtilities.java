@@ -69,10 +69,8 @@ public class TestUtilities {
     if (!path.exists()) {
       path.mkdirs();
     }
-    UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
     try {
-      // capturing screenshot by shell command, android.support.test.uiautomator.UiDevice#takeScreenshot not working for old emulator
-      device.executeShellCommand(format("screencap -p {0}/{1}_{2}", path.getAbsolutePath(), System.currentTimeMillis(), filename));
+      Runtime.getRuntime().exec(format("screencap -p {0}/{1}_{2}", path.getAbsolutePath(), System.currentTimeMillis(), filename));
     } catch (IOException e) {
       e.printStackTrace();
     }
